@@ -59,44 +59,33 @@ document.addEventListener("keydown", (event) => {
 // Створи функцію createBoxes(amount), яка приймає 1 параметр amount — число. 
 // Функція створює стільки div, скільки вказано в amount і додає їх в div#boxes.
 
-const inputField = document.querySelector('.input');
-const buttonCreate = document.querySelector('[data-action="render"]');
-const buttonDelete = document.querySelector('[data-action="destroy"]');
-
-
-function getRandomRgb() {
-    let num = Math.round(0xffffff * Math.random());
-    let r = num >> 16;
-    let g = num >> 8 & 255;
-    let b = num & 255;
-    return 'rgb(' + r + ', ' + g + ', ' + b + ')';
+function createBoxes() {
+  const amount = document.getElementById('boxNumber').value;
+  const boxesContainer = document.getElementById('boxes');
+  boxesContainer.innerHTML = '';
+  
+  for (let i = 0; i < amount; i++) {
+    const box = document.createElement('div');
+    box.classList.add('box');
+    box.style.backgroundColor = getRandomColor();
+    box.style.width = `${30 + i * 10}px`;
+    box.style.height = `${30 + i * 10}px`;
+    boxesContainer.appendChild(box);
+  }
   }
   
-  for (let i = 0; i < 10; i++) {
-    console.log(getRandomRgb());
+  function destroyBoxes() {
+  const boxesContainer = document.getElementById('boxes');
+  boxesContainer.innerHTML = '';
   }
-
-  function createBoxes(amount) {
-    const boxEl = document.createElement('div')
-    console.log(boxEl);
-    boxEl.style.width='30px'
-    boxEl.style.height='30px'
-    const boxes = document.getElementById('boxes')
-    boxes.appendChild(boxEl)
+  
+  function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
   }
-
-  console.log(createBoxes(10));
-
-  inputField.addEventListener('change', event => {
-    console.log(event.target);
-  })
-
-  buttonCreate.addEventListener('click', event => {
-    console.log(event);
-  })
-
-  buttonDelete.addEventListener('click', event => {
-    boxEl.remove();
-  })
+  return color;
+  }
 
   

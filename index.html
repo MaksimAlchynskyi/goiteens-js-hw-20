@@ -47,18 +47,12 @@
     </div>
 
     <div id="controls">
-
-        <input class="input" type="number" min="0" max="100" step="1" />
-
-        <button type="button" data-action="render">Створити</button>
-
-        <button type="button" data-action="destroy">Очистити</button>
-
-    </div>
-
-
-
-    <div id="boxes"></div>
+        <input type="number" min="0" max="100" step="1" id="boxNumber"/>
+        <button type="button" data-action="render" onclick="createBoxes()">Створити</button>
+        <button type="button" data-action="destroy" onclick="destroyBoxes()">Очистити</button>
+      </div>
+    
+      <div id="boxes"></div>
     <script src="index.js"></script>
 </body>
 
